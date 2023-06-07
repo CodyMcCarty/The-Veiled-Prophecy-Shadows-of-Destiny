@@ -3,8 +3,15 @@
 #include "raylib.h"
 #include "raymath.h"
 
+class SDCharacter
+{
+ public:
+ private:
+};
+
 int main()
 {
+  // TODO: change the name of the exe file
   const char *Title = "The Veiled Prophecy: Shadows of Destiny";
   int ViewHeight{720};
   int ViewWidth{1280};
