@@ -2,13 +2,16 @@
 
 #include "raymath.h"
 
-SDCharacter::SDCharacter() { SpriteWidth = Texture.width / MaxFrames; }
+SDCharacter::SDCharacter()
+{
+  SpriteWidth = Texture.width / MaxFrames;
+  SpriteHeight = Texture.height;
+}
 
 void SDCharacter::SetResolution(int Width, int Height)
 {
-  ScreenPos = {
-      ((float)Width / 2.0f) - Scale * (0.5f * (float)Texture.width / 6.0f),
-      ((float)Height / 2.0f) - Scale * (.05f * (float)Texture.height)};
+  ScreenPos = {((float)Width / 2.0f) - Scale * (0.5f * SpriteWidth),
+               ((float)Height / 2.0f) - Scale * (.05f * SpriteHeight)};
 }
 
 void SDCharacter::Tick(float DeltaTime)
@@ -41,10 +44,9 @@ void SDCharacter::Tick(float DeltaTime)
   }
 
   // Draw Character
-  Rectangle Source{Frame * (float)Texture.width / 6.f, 0.f,
-                   RightLeft * (float)Texture.width / 6.f,
-                   (float)Texture.height};
-  Rectangle Dest{ScreenPos.x, ScreenPos.y, (float)Texture.width / 6.f * Scale,
-                 (float)Texture.height * Scale};
+  Rectangle Source{Frame * SpriteWidth, 0.f, RightLeft * SpriteWidth,
+                   SpriteHeight};
+  Rectangle Dest{ScreenPos.x, ScreenPos.y, SpriteWidth * Scale,
+                 SpriteHeight * Scale};
   DrawTexturePro(Texture, Source, Dest, Vector2{}, 0.f, WHITE);
 }

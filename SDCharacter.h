@@ -26,5 +26,5 @@ class SDCharacter
   float Speed{4.f};
   // TODO: turn into sprite map
   float SpriteWidth{};
-  float Height{};
+  float SpriteHeight{};
 };
