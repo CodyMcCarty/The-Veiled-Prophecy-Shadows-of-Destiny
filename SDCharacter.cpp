@@ -14,8 +14,11 @@ void SDCharacter::SetResolution(int Width, int Height)
                ((float)Height / 2.0f) - Scale * (.05f * SpriteHeight)};
 }
 
+void SDCharacter::UndoMovement() { WorldPos = WorldPosLastFrame; }
+
 void SDCharacter::Tick(float DeltaTime)
 {
+  WorldPosLastFrame = WorldPos;
   Vector2 direction{};
   if (IsKeyDown(KEY_A)) direction.x -= 1.0;
   if (IsKeyDown(KEY_D)) direction.x += 1.0;

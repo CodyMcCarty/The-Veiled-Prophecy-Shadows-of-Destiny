@@ -8,6 +8,7 @@ class SDCharacter
   void SetResolution(int Width, int Height);
   void Tick(float DeltaTime);
   void SetScale(float scale) { Scale = scale; }
+  void UndoMovement();
 
  private:
   Texture2D Idle{LoadTexture("characters/knight_idle_spritesheet.png")};
@@ -23,8 +24,9 @@ class SDCharacter
   int Frame{};
   int MaxFrames{6};
   float UpdateTime{1.f / 12.f};
-  float Speed{4.f};
+  float Speed{14.f};  // TODO: set to 4 after debuging
   // TODO: turn into sprite map
   float SpriteWidth{};
   float SpriteHeight{};
+  Vector2 WorldPosLastFrame{};
 };
