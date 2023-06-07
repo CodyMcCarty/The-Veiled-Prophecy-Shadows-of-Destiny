@@ -9,6 +9,6 @@ SDProp::SDProp(Vector2 worldPos, Texture2D texture)
 
 void SDProp::Render(Vector2 knightPos)
 {
-  Vector2 screenPos = Vector2Subtract(knightPos, WorldPos);
+  Vector2 screenPos{Vector2Subtract(WorldPos, knightPos)};
   DrawTextureEx(Texture, screenPos, 0.f, Scale, WHITE);
 }

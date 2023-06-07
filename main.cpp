@@ -18,7 +18,7 @@ int main()
   Texture2D Map = LoadTexture("nature_tileset/WorldMap.png");
   Vector2 MapPos{0.0, 0.0};
   const float MapScale{4.0};
-  const float Ocean{50.f * MapScale};
+  const float Ocean{45.f * MapScale};
 
   SDCharacter Knight{ViewWidth, ViewHeight};
   SDProp rock001{Vector2{}, LoadTexture("nature_tileset/Rock.png")};
@@ -33,16 +33,25 @@ int main()
     DrawTextureEx(Map, MapPos, 0.f, MapScale, WHITE);
 
     Knight.Tick(GetFrameTime());
-    // TODO: improve Check map bounds
-    if (Knight.GetWorldPos().x + (0.5f * ViewWidth) < Ocean ||
-        Knight.GetWorldPos().y + (0.5f * ViewHeight) < Ocean ||
-        Knight.GetWorldPos().x + ViewWidth > Map.width * MapScale + Ocean ||
-        Knight.GetWorldPos().y + ViewHeight > Map.width * MapScale + Ocean)
+    // if (Knight.GetWorldPos().x + (0.5f * ViewWidth) < Ocean ||
+    //     Knight.GetWorldPos().y + (0.5f * ViewHeight) < Ocean ||
+    //     Knight.GetWorldPos().x + ViewWidth > Map.width * MapScale + Ocean ||
+    //     Knight.GetWorldPos().y + ViewHeight > Map.width * MapScale + Ocean)
+    // {
+    //   //   Knight.UndoMovement();
+    // }
+    if (Knight.GetLocation().x < Ocean || Knight.GetLocation().y < Ocean ||
+        Knight.GetLocation().x > Map.width * MapScale - Ocean ||
+        Knight.GetLocation().y > Map.width * MapScale - Ocean)
     {
       Knight.UndoMovement();
     }
 
     rock001.Render(Knight.GetWorldPos());
+
+    // Debug Location
+    std::cout << Knight.GetLocation().x << " , " << Knight.GetLocation().y
+              << std::endl;
 
     EndDrawing();
   }

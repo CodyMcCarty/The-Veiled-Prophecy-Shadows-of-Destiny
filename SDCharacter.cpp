@@ -10,10 +10,23 @@ SDCharacter::SDCharacter(int ResolutionWidth, int ResolutionHeight)
   ScreenPos = {(static_cast<float>(ResolutionWidth) / 2.0f) -
                    Scale * (0.5f * SpriteWidth),
                (static_cast<float>(ResolutionHeight) / 2.0f) -
-                   Scale * (.05f * SpriteHeight)};
+                   Scale * (0.5f * SpriteHeight)};
 }
 
 void SDCharacter::UndoMovement() { WorldPos = WorldPosLastFrame; }
+
+/*
+Updated location method.
+Location 0,0 is top,left of map and mapSize+mapScale
+i.e. 4000,4000 is bottom,right
+*/
+Vector2 SDCharacter::GetLocation()
+{
+  // center of sprite
+  Vector2 pos{WorldPos.x + Scale * (0.5f * SpriteWidth),
+              WorldPos.y + Scale * (0.5f * SpriteHeight)};
+  return Vector2Add(pos, ScreenPos);
+}
 
 void SDCharacter::Tick(float DeltaTime)
 {
@@ -24,8 +37,10 @@ void SDCharacter::Tick(float DeltaTime)
   if (IsKeyDown(KEY_W)) direction.y -= 1.0;
   if (IsKeyDown(KEY_S)) direction.y += 1.0;
   // TODO: should be normalized right after
+
   if (Vector2Length(direction) != 0.0)
   {
+    Speed = IsKeyDown(KEY_LEFT_SHIFT) ? 20.f : 2.f;  // TODO: Debug speed
     WorldPos =
         Vector2Add(WorldPos, Vector2Scale(Vector2Normalize(direction), Speed));
     RightLeft = direction.x < 0.f ? -1.f : 1.f;
