@@ -7,7 +7,7 @@ class SDProp
   void Render(Vector2 knightPos);
 
  private:
-  Texture2D Texture{};
   Vector2 WorldPos{};
+  Texture2D Texture{};
   float Scale{4.f};
 };
