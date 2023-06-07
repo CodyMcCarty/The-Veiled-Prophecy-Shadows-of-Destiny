@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "SDCharacter.h"
+#include "SDProp.h"
 #include "raylib.h"
 #include "raymath.h"
 
@@ -20,6 +21,7 @@ int main()
   const float Ocean{50.f * MapScale};
 
   SDCharacter Knight{ViewWidth, ViewHeight};
+  SDProp rock001{Vector2{}, LoadTexture("nature_tileset/Rock.png")};
 
   while (!WindowShouldClose())
   {
@@ -39,6 +41,9 @@ int main()
     {
       Knight.UndoMovement();
     }
+
+    rock001.Render(Knight.GetWorldPos());
+
     EndDrawing();
   }
   CloseWindow();
