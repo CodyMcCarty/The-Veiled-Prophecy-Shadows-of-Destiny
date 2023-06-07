@@ -2,16 +2,15 @@
 
 #include "raymath.h"
 
-SDCharacter::SDCharacter()
+SDCharacter::SDCharacter(int ResolutionWidth, int ResolutionHeight)
 {
   SpriteWidth = Texture.width / MaxFrames;
   SpriteHeight = Texture.height;
-}
 
-void SDCharacter::SetResolution(int Width, int Height)
-{
-  ScreenPos = {((float)Width / 2.0f) - Scale * (0.5f * SpriteWidth),
-               ((float)Height / 2.0f) - Scale * (.05f * SpriteHeight)};
+  ScreenPos = {(static_cast<float>(ResolutionWidth) / 2.0f) -
+                   Scale * (0.5f * SpriteWidth),
+               (static_cast<float>(ResolutionHeight) / 2.0f) -
+                   Scale * (.05f * SpriteHeight)};
 }
 
 void SDCharacter::UndoMovement() { WorldPos = WorldPosLastFrame; }

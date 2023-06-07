@@ -3,9 +3,8 @@
 class SDCharacter
 {
  public:
-  SDCharacter();
+  SDCharacter(int ResolutionWidth, int ResolutionHeight);
   Vector2 GetWorldPos() { return WorldPos; }
-  void SetResolution(int Width, int Height);
   void Tick(float DeltaTime);
   void SetScale(float scale) { Scale = scale; }
   void UndoMovement();

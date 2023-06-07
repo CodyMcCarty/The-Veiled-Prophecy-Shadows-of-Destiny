@@ -8,8 +8,8 @@ int main()
 {
   // TODO: change the name of the exe file
   const char *Title = "The Veiled Prophecy: Shadows of Destiny";
-  int ViewHeight{720};
   int ViewWidth{1280};
+  int ViewHeight{720};
 
   InitWindow(ViewWidth, ViewHeight, Title);
   SetTargetFPS(60);
@@ -19,8 +19,7 @@ int main()
   const float MapScale{4.0};
   const float Ocean{50.f * MapScale};
 
-  SDCharacter Knight;
-  Knight.SetResolution(ViewWidth, ViewHeight);
+  SDCharacter Knight{ViewWidth, ViewHeight};
 
   while (!WindowShouldClose())
   {
