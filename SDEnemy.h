@@ -6,7 +6,7 @@ class SDEnemy : public SDBaseCharacter
 {
  public:
   SDEnemy(Vector2 pos, Texture2D Idle, Texture2D Run);
-  void Tick(float deltaTime);
+  virtual void Tick(float deltaTime) override;
 
  private:
 };

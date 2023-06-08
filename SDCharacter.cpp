@@ -25,9 +25,9 @@ Vector2 SDCharacter::GetLocation()
   return Vector2Add(pos, ScreenPos);
 }
 
-void SDCharacter::Tick(float DeltaTime)
+void SDCharacter::Tick(float deltaTime)
 {
-  WorldPosLastFrame = WorldPos;
+  SDBaseCharacter::Tick(deltaTime);
   Vector2 direction{};
   if (IsKeyDown(KEY_A)) direction.x -= 1.0;
   if (IsKeyDown(KEY_D)) direction.x += 1.0;
@@ -48,20 +48,4 @@ void SDCharacter::Tick(float DeltaTime)
   {
     Texture = Idle;
   }
-
-  // Update animation frame
-  RunningTime += DeltaTime;
-  if (RunningTime >= UpdateTime)
-  {
-    Frame++;
-    RunningTime = 0.f;
-    if (Frame > MaxFrames) Frame = 0;
-  }
-
-  // Draw Character
-  Rectangle Source{Frame * SpriteWidth, 0.f, RightLeft * SpriteWidth,
-                   SpriteHeight};
-  Rectangle Dest{ScreenPos.x, ScreenPos.y, SpriteWidth * Scale,
-                 SpriteHeight * Scale};
-  DrawTexturePro(Texture, Source, Dest, Vector2{}, 0.f, WHITE);
 }

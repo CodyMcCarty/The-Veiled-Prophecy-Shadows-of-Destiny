@@ -6,7 +6,7 @@ class SDCharacter : public SDBaseCharacter
 {
  public:
   SDCharacter(int ResolutionWidth, int ResolutionHeight);
-  void Tick(float DeltaTime);
+  virtual void Tick(float DeltaTime) override;
   Vector2 GetLocation();
 
  private:
