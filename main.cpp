@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "SDCharacter.h"
+#include "SDEnemy.h"
 #include "SDProp.h"
 #include "raylib.h"
 #include "raymath.h"
@@ -26,6 +27,10 @@ int main()
       SDProp{Vector2{800.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
       SDProp{Vector2{400.f, 500.f}, LoadTexture("nature_tileset/Log.png")}};
 
+  //   SDEnemy Goblin{Vector2{800.f, 500.f},
+  //                  LoadTexture("characters/goblin_idle_spritesheet.png"),
+  //                  LoadTexture("characters/goblin_run_spritesheet.png")};
+
   while (!WindowShouldClose())
   {
     BeginDrawing();
@@ -49,6 +54,9 @@ int main()
     {
       Knight.UndoMovement();
     }
+
+    // Draw Enemies
+    // Goblin.Tick(GetFrameTime());
 
     // Draw Props
     for (SDProp prop : Props)

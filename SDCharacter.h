@@ -1,6 +1,8 @@
+#pragma once
+#include "SDBaseCharacter.h"
 #include "raylib.h"
 
-class SDCharacter
+class SDCharacter : public SDBaseCharacter
 {
  public:
   SDCharacter(int ResolutionWidth, int ResolutionHeight);
