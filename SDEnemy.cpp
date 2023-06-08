@@ -1,5 +1,8 @@
 #include "SDEnemy.h"
 
+#include "SDCharacter.h"
+#include "raymath.h"
+
 SDEnemy::SDEnemy(Vector2 worldPos, Texture2D idleTexture, Texture2D runTexture)
 {
   WorldPos = worldPos;
@@ -13,6 +16,7 @@ SDEnemy::SDEnemy(Vector2 worldPos, Texture2D idleTexture, Texture2D runTexture)
 
 void SDEnemy::Tick(float deltaTime)
 {
+  ScreenPos = Vector2Subtract(WorldPos, Target->GetWorldPos());
   SDBaseCharacter::Tick(deltaTime);
   // ai behavior
 }
