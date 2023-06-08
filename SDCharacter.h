@@ -8,7 +8,9 @@ class SDCharacter : public SDBaseCharacter
   SDCharacter(int ResolutionWidth, int ResolutionHeight);
   virtual void Tick(float DeltaTime) override;
   Vector2 GetLocation();
-  Vector2 GetScreenPos() { return ScreenPos; }
+  virtual Vector2 GetScreenPos() override;
 
  private:
+  int ViewWidth{};
+  int ViewHeight{};
 };

@@ -9,6 +9,7 @@ class SDBaseCharacter
   void SetScale(float scale) { Scale = scale; }
   void UndoMovement();
   Rectangle GetCollision();
+  virtual Vector2 GetScreenPos() = 0;
   virtual void Tick(float deltaTime);
 
  protected:
@@ -16,7 +17,7 @@ class SDBaseCharacter
   Texture2D Run{LoadTexture("characters/knight_run_spritesheet.png")};
   Texture2D Texture{Idle};
   float Scale{4.f};
-  Vector2 ScreenPos{};
+  //   Vector2 ScreenPos{};
   Vector2 WorldPos{};
   // 1:facing right -1:facing left
   float RightLeft{1.f};  // TODO: make it a bool?
