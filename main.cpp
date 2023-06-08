@@ -21,7 +21,10 @@ int main()
   const float Ocean{45.f * MapScale};
 
   SDCharacter Knight{ViewWidth, ViewHeight};
-  SDProp rock001{Vector2{}, LoadTexture("nature_tileset/Rock.png")};
+
+  SDProp Props[2]{
+      SDProp{Vector2{600.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
+      SDProp{Vector2{400.f, 500.f}, LoadTexture("nature_tileset/Log.png")}};
 
   while (!WindowShouldClose())
   {
@@ -47,7 +50,11 @@ int main()
       Knight.UndoMovement();
     }
 
-    rock001.Render(Knight.GetWorldPos());
+    // Draw Props
+    for (SDProp prop : Props)
+    {
+      prop.Render(Knight.GetWorldPos());
+    }
 
     // Debug Location
     std::cout << Knight.GetLocation().x << " , " << Knight.GetLocation().y
