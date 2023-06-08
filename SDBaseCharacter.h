@@ -30,6 +30,7 @@ class SDBaseCharacter
   float SpriteWidth{};
   float SpriteHeight{};
   Vector2 WorldPosLastFrame{};
+  Vector2 Velocity{};
 
  private:
 };

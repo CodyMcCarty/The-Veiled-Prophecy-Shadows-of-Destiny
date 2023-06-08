@@ -31,6 +31,10 @@ void SDEnemy::SetNearbyRandomTargetLocation()
 
 void SDEnemy::MoveToTarget(Vector2 targetLocation)
 {
+  // tL=Target->GetScreenPos()
+  // Vector2 toTarget = Vector2Subtract(Target->GetScreenPos(), ScreenPos);
+  // toTarget = Vector2Scale(Vector2Normalize(toTarget), Speed);
+  //  WorldPos = Vector2Add(WorldPos, toTarget);
   Vector2 location = Vector2Subtract(targetLocation, WorldPos);
   location = Vector2Scale(Vector2Normalize(location), Speed / 2);
   WorldPos = Vector2Add(WorldPos, location);
