@@ -13,8 +13,6 @@ SDCharacter::SDCharacter(int ResolutionWidth, int ResolutionHeight)
                    Scale * (0.5f * SpriteHeight)};
 }
 
-void SDCharacter::UndoMovement() { WorldPos = WorldPosLastFrame; }
-
 /*
 Updated location method.
 Location 0,0 is top,left of map and mapSize+mapScale
@@ -25,12 +23,6 @@ Vector2 SDCharacter::GetLocation()
   Vector2 pos{WorldPos.x + Scale * (0.5f * SpriteWidth),
               WorldPos.y + Scale * (0.5f * SpriteHeight)};
   return Vector2Add(pos, ScreenPos);
-}
-
-Rectangle SDCharacter::GetCollision()
-{
-  return Rectangle{ScreenPos.x, ScreenPos.y, Scale * SpriteWidth,
-                   Scale * SpriteHeight};
 }
 
 void SDCharacter::Tick(float DeltaTime)
