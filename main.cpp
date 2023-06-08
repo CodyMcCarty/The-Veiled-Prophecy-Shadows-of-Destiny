@@ -26,7 +26,7 @@ int main()
       SDProp{Vector2{800.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
       SDProp{Vector2{400.f, 500.f}, LoadTexture("nature_tileset/Log.png")}};
 
-  SDEnemy Goblin{Vector2{800.f, 600.f},
+  SDEnemy Goblin{Vector2{1300.f, 850.f},
                  LoadTexture("characters/goblin_idle_spritesheet.png"),
                  LoadTexture("characters/goblin_run_spritesheet.png")};
   Goblin.SetTarget(&Knight);
@@ -71,8 +71,8 @@ int main()
     }
 
     // Debug Location
-    std::cout << Knight.GetLocation().x << " , " << Knight.GetLocation().y
-              << std::endl;
+    // std::cout << Knight.GetLocation().x << " , " << Knight.GetLocation().y
+    //           << " : " << Knight.GetScreenPos().y << std::endl;
 
     EndDrawing();
   }
