@@ -12,7 +12,6 @@ int main()
   const char *Title = "The Veiled Prophecy: Shadows of Destiny";
   int ViewWidth{1280};
   int ViewHeight{720};
-
   InitWindow(ViewWidth, ViewHeight, Title);
   SetTargetFPS(60);
 
@@ -30,6 +29,7 @@ int main()
   SDEnemy Goblin{Vector2{800.f, 600.f},
                  LoadTexture("characters/goblin_idle_spritesheet.png"),
                  LoadTexture("characters/goblin_run_spritesheet.png")};
+  Goblin.SetTarget(&Knight);
 
   while (!WindowShouldClose())
   {
