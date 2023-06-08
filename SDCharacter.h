@@ -24,7 +24,7 @@ class SDCharacter
   int Frame{};
   int MaxFrames{6};
   float UpdateTime{1.f / 12.f};
-  float Speed{4.f};  // TODO: set to 4 after debuging
+  float Speed{4.f};
   // TODO: turn into sprite map
   float SpriteWidth{};
   float SpriteHeight{};

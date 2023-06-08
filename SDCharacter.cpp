@@ -18,11 +18,10 @@ void SDCharacter::UndoMovement() { WorldPos = WorldPosLastFrame; }
 /*
 Updated location method.
 Location 0,0 is top,left of map and mapSize+mapScale
-i.e. 4000,4000 is bottom,right
+i.e. ~4000,4000 is bottom,right
 */
 Vector2 SDCharacter::GetLocation()
 {
-  // center of sprite
   Vector2 pos{WorldPos.x + Scale * (0.5f * SpriteWidth),
               WorldPos.y + Scale * (0.5f * SpriteHeight)};
   return Vector2Add(pos, ScreenPos);
@@ -40,7 +39,8 @@ void SDCharacter::Tick(float DeltaTime)
 
   if (Vector2Length(direction) != 0.0)
   {
-    Speed = IsKeyDown(KEY_LEFT_SHIFT) ? 20.f : 2.f;  // TODO: Debug speed
+    // TODO: Remove Debug speed
+    Speed = IsKeyDown(KEY_LEFT_SHIFT) ? 20.f : 4.f;
     WorldPos =
         Vector2Add(WorldPos, Vector2Scale(Vector2Normalize(direction), Speed));
     RightLeft = direction.x < 0.f ? -1.f : 1.f;
