@@ -5,6 +5,7 @@ class SDProp
  public:
   SDProp(Vector2 worldPos, Texture2D texture);
   void Render(Vector2 knightPos);
+  Rectangle GetCollision(Vector2 knightPos);
 
  private:
   Vector2 WorldPos{};

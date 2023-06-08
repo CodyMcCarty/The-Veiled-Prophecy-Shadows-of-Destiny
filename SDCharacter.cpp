@@ -27,6 +27,12 @@ Vector2 SDCharacter::GetLocation()
   return Vector2Add(pos, ScreenPos);
 }
 
+Rectangle SDCharacter::GetCollision()
+{
+  return Rectangle{ScreenPos.x, ScreenPos.y, Scale * SpriteWidth,
+                   Scale * SpriteHeight};
+}
+
 void SDCharacter::Tick(float DeltaTime)
 {
   WorldPosLastFrame = WorldPos;

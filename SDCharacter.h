@@ -9,6 +9,7 @@ class SDCharacter
   void SetScale(float scale) { Scale = scale; }
   void UndoMovement();
   Vector2 GetLocation();
+  Rectangle GetCollision();
 
  private:
   Texture2D Idle{LoadTexture("characters/knight_idle_spritesheet.png")};

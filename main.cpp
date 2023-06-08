@@ -23,7 +23,7 @@ int main()
   SDCharacter Knight{ViewWidth, ViewHeight};
 
   SDProp Props[2]{
-      SDProp{Vector2{600.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
+      SDProp{Vector2{800.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
       SDProp{Vector2{400.f, 500.f}, LoadTexture("nature_tileset/Log.png")}};
 
   while (!WindowShouldClose())
@@ -54,6 +54,12 @@ int main()
     for (SDProp prop : Props)
     {
       prop.Render(Knight.GetWorldPos());
+      // check prop collision
+      if (CheckCollisionRecs(prop.GetCollision(Knight.GetWorldPos()),
+                             Knight.GetCollision()))
+      {
+        Knight.UndoMovement();
+      }
     }
 
     // Debug Location
