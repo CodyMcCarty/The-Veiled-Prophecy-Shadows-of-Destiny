@@ -11,6 +11,8 @@ class SDBaseCharacter
   Rectangle GetCollision();
   virtual Vector2 GetScreenPos() = 0;
   virtual void Tick(float deltaTime);
+  bool GetAlive() { return bAlive; }
+  void SetAlive(bool balive) { bAlive = balive; }
 
  protected:
   Texture2D Idle{LoadTexture("characters/knight_idle_spritesheet.png")};
@@ -34,4 +36,5 @@ class SDBaseCharacter
   Vector2 Velocity{};
 
  private:
+  bool bAlive{true};
 };

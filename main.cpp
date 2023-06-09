@@ -70,6 +70,13 @@ int main()
       }
     }
 
+    // attacking
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
+        CheckCollisionRecs(Goblin.GetCollision(), Knight.GetWeaponCollision()))
+    {
+      Goblin.SetAlive(false);
+    }
+
     // Debug Location
     // std::cout << Knight.GetLocation().x << " , " << Knight.GetLocation().y
     //           << " : " << Knight.GetScreenPos().y << std::endl;

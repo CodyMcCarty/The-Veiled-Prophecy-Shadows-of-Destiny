@@ -30,6 +30,8 @@ Vector2 SDCharacter::GetLocation()
 
 void SDCharacter::Tick(float deltaTime)
 {
+  if (!GetAlive()) return;
+
   if (IsKeyDown(KEY_A)) Velocity.x -= 1.0;
   if (IsKeyDown(KEY_D)) Velocity.x += 1.0;
   if (IsKeyDown(KEY_W)) Velocity.y -= 1.0;
@@ -51,7 +53,7 @@ void SDCharacter::Tick(float deltaTime)
     weaponCollision = {GetScreenPos().x + swordOffset.x,
                        GetScreenPos().y + swordOffset.y - Weapon.height * Scale,
                        Weapon.width * Scale, Weapon.height * Scale};
-    swordRotation = 35.f;
+    swordRotation = IsMouseButtonDown(MOUSE_BUTTON_LEFT) ? 35.f : 0.f;
   }
   else
   {
@@ -60,7 +62,7 @@ void SDCharacter::Tick(float deltaTime)
     weaponCollision = {GetScreenPos().x + swordOffset.x - Weapon.width * Scale,
                        GetScreenPos().y + swordOffset.y - Weapon.height * Scale,
                        Weapon.width * Scale, Weapon.height * Scale};
-    swordRotation = -35.f;
+    swordRotation = IsMouseButtonDown(MOUSE_BUTTON_LEFT) ? -35.f : 0.f;
   }
 
   Rectangle swordSource{0.f, 0.f, static_cast<float>(Weapon.width) * RightLeft,

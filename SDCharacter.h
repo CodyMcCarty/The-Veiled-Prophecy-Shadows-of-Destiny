@@ -9,6 +9,7 @@ class SDCharacter : public SDBaseCharacter
   virtual void Tick(float DeltaTime) override;
   Vector2 GetLocation();
   virtual Vector2 GetScreenPos() override;
+  Rectangle GetWeaponCollision() { return weaponCollision; }
 
  private:
   int ViewWidth{};

@@ -14,6 +14,8 @@ Rectangle SDBaseCharacter::GetCollision()
 
 void SDBaseCharacter::Tick(float deltaTime)
 {
+  if (!GetAlive()) return;
+
   WorldPosLastFrame = WorldPos;
 
   // Update animation frame

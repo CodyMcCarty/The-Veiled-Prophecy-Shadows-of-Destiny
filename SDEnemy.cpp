@@ -24,6 +24,8 @@ Vector2 SDEnemy::GetScreenPos()
 
 void SDEnemy::Tick(float deltaTime)
 {
+  if (!GetAlive()) return;
+
   Velocity = Vector2Subtract(Target->GetScreenPos(), GetScreenPos());
   SDBaseCharacter::Tick(deltaTime);
 }
