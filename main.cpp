@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 #include "SDCharacter.h"
 #include "SDEnemy.h"
@@ -70,11 +71,24 @@ int main()
       }
     }
 
+    if (!Knight.GetAlive())
+    {
+      DrawText("Game Over!", 55.f, 45.f, 40, RED);
+      EndDrawing();
+      continue;
+    }
+
     // attacking
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
         CheckCollisionRecs(Goblin.GetCollision(), Knight.GetWeaponCollision()))
     {
       Goblin.SetAlive(false);
+    }
+    else
+    {
+      std::string HP = "Health: ";
+      HP.append(std::to_string(Knight.GetHealth()), 0, 2);
+      DrawText(HP.c_str(), 55.f, 45.f, 40, RED);
     }
 
     // Debug Location
