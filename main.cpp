@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 
 #include "SDCharacter.h"
@@ -10,7 +9,7 @@
 int main()
 {
   // TODO: change the name of the exe file
-  const char *Title = "The Veiled Prophecy: Shadows of Destiny";
+  const char* Title = "The Veiled Prophecy: Shadows of Destiny";
   int ViewWidth{1280};
   int ViewHeight{720};
   InitWindow(ViewWidth, ViewHeight, Title);
@@ -27,10 +26,22 @@ int main()
       SDProp{Vector2{800.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
       SDProp{Vector2{400.f, 500.f}, LoadTexture("nature_tileset/Log.png")}};
 
-  SDEnemy Goblin{Vector2{1300.f, 850.f},
-                 LoadTexture("characters/goblin_idle_spritesheet.png"),
-                 LoadTexture("characters/goblin_run_spritesheet.png")};
-  Goblin.SetTarget(&Knight);
+  SDEnemy Goblin01{Vector2{1300.f, 850.f},
+                   LoadTexture("characters/goblin_idle_spritesheet.png"),
+                   LoadTexture("characters/goblin_run_spritesheet.png")};
+  SDEnemy Slime01{Vector2{1900.f, 1250.f},
+                  LoadTexture("characters/slime_idle_spritesheet.png"),
+                  LoadTexture("characters/slime_run_spritesheet.png")};
+  SDEnemy Goblin02{Vector2{1800.f, 1350.f},
+                   LoadTexture("characters/goblin_idle_spritesheet.png"),
+                   LoadTexture("characters/goblin_run_spritesheet.png")};
+
+  SDEnemy* Enemies[]{&Goblin01, &Goblin02, &Slime01};
+
+  for (SDEnemy* enemy : Enemies)
+  {
+    enemy->SetTarget(&Knight);
+  }
 
   while (!WindowShouldClose())
   {
@@ -42,22 +53,12 @@ int main()
     DrawTextureEx(Map, MapPos, 0.f, MapScale, WHITE);
 
     Knight.Tick(GetFrameTime());
-    // if (Knight.GetWorldPos().x + (0.5f * ViewWidth) < Ocean ||
-    //     Knight.GetWorldPos().y + (0.5f * ViewHeight) < Ocean ||
-    //     Knight.GetWorldPos().x + ViewWidth > Map.width * MapScale + Ocean ||
-    //     Knight.GetWorldPos().y + ViewHeight > Map.width * MapScale + Ocean)
-    // {
-    //   //   Knight.UndoMovement();
-    // }
     if (Knight.GetLocation().x < Ocean || Knight.GetLocation().y < Ocean ||
         Knight.GetLocation().x > Map.width * MapScale - Ocean ||
         Knight.GetLocation().y > Map.width * MapScale - Ocean)
     {
       Knight.UndoMovement();
     }
-
-    // Draw Enemies
-    Goblin.Tick(GetFrameTime());
 
     // Draw Props
     for (SDProp prop : Props)
@@ -71,18 +72,12 @@ int main()
       }
     }
 
+    // Draw HP or GameOver
     if (!Knight.GetAlive())
     {
       DrawText("Game Over!", 55.f, 45.f, 40, RED);
       EndDrawing();
       continue;
-    }
-
-    // attacking
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
-        CheckCollisionRecs(Goblin.GetCollision(), Knight.GetWeaponCollision()))
-    {
-      Goblin.SetAlive(false);
     }
     else
     {
@@ -91,9 +86,19 @@ int main()
       DrawText(HP.c_str(), 55.f, 45.f, 40, RED);
     }
 
-    // Debug Location
-    // std::cout << Knight.GetLocation().x << " , " << Knight.GetLocation().y
-    //           << " : " << Knight.GetScreenPos().y << std::endl;
+    for (SDEnemy* enemy : Enemies)
+    {
+      enemy->Tick(GetFrameTime());
+
+      if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+      {
+        if (CheckCollisionRecs(enemy->GetCollision(),
+                               Knight.GetWeaponCollision()))
+        {
+          enemy->SetAlive(false);
+        }
+      }
+    }
 
     EndDrawing();
   }

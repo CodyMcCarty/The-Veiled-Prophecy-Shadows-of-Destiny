@@ -27,6 +27,7 @@ void SDEnemy::Tick(float deltaTime)
   if (!GetAlive()) return;
 
   Velocity = Vector2Subtract(Target->GetScreenPos(), GetScreenPos());
+  // if (Vector2Length(Velocity) < 25.f) Velocity = {}; // gets close and stops
   SDBaseCharacter::Tick(deltaTime);
 
   if (CheckCollisionRecs(GetCollision(), Target->GetCollision()))

@@ -1,5 +1,7 @@
 #include "SDCharacter.h"
 
+#include <iostream>
+
 #include "raymath.h"
 
 SDCharacter::SDCharacter(int viewWidth, int viewHeight)
@@ -41,12 +43,17 @@ void SDCharacter::Tick(float deltaTime)
 {
   if (!GetAlive()) return;
 
+  if (IsKeyPressed(KEY_L))
+  {
+    std::cout << GetLocation().x << " , " << GetLocation().y << std::endl;
+  }
+
   if (IsKeyDown(KEY_A)) Velocity.x -= 1.0;
   if (IsKeyDown(KEY_D)) Velocity.x += 1.0;
   if (IsKeyDown(KEY_W)) Velocity.y -= 1.0;
   if (IsKeyDown(KEY_S)) Velocity.y += 1.0;
   // TODO: should be normalized right after?
-  // TODO: Remove Debug speed
+  // TODO: Remove Debug speed sprint
   Speed = IsKeyDown(KEY_LEFT_SHIFT) ? 20.f : 4.f;
 
   SDBaseCharacter::Tick(deltaTime);
