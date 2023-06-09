@@ -54,7 +54,7 @@ void SDCharacter::Tick(float deltaTime)
   if (IsKeyDown(KEY_S)) Velocity.y += 1.0;
   // TODO: should be normalized right after?
   // TODO: Remove Debug speed sprint
-  Speed = IsKeyDown(KEY_LEFT_SHIFT) ? 20.f : 4.f;
+  // Speed = IsKeyDown(KEY_LEFT_SHIFT) ? 20.f : 4.f;
 
   SDBaseCharacter::Tick(deltaTime);
 
@@ -89,6 +89,6 @@ void SDCharacter::Tick(float deltaTime)
   DrawTexturePro(Weapon, swordSource, swordDest, swordOrigin, swordRotation,
                  WHITE);
 
-  DrawRectangleLines(weaponCollision.x, weaponCollision.y,
-                     weaponCollision.width, weaponCollision.height, RED);
+  // DrawRectangleLines(weaponCollision.x, weaponCollision.y,
+  //                    weaponCollision.width, weaponCollision.height, RED);
 }
