@@ -13,4 +13,6 @@ class SDCharacter : public SDBaseCharacter
  private:
   int ViewWidth{};
   int ViewHeight{};
+  Texture2D Weapon{LoadTexture("characters/weapon_sword.png")};
+  Rectangle weaponCollision{};
 };

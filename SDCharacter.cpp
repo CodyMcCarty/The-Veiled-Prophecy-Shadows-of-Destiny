@@ -39,4 +39,34 @@ void SDCharacter::Tick(float deltaTime)
   Speed = IsKeyDown(KEY_LEFT_SHIFT) ? 20.f : 4.f;
 
   SDBaseCharacter::Tick(deltaTime);
+
+  // draw sword
+  Vector2 swordOrigin{};
+  Vector2 swordOffset{};
+  if (RightLeft > 0.f)
+  {
+    swordOrigin = {0.f, Weapon.height * Scale};
+    swordOffset = {35.f, 55.f};
+    weaponCollision = {GetScreenPos().x + swordOffset.x,
+                       GetScreenPos().y + swordOffset.y - Weapon.height * Scale,
+                       Weapon.width * Scale, Weapon.height * Scale};
+  }
+  else
+  {
+    swordOrigin = {Weapon.width * Scale, Weapon.height * Scale};
+    swordOffset = {25.f, 55.f};
+    weaponCollision = {GetScreenPos().x + swordOffset.x - Weapon.width * Scale,
+                       GetScreenPos().y + swordOffset.y - Weapon.height * Scale,
+                       Weapon.width * Scale, Weapon.height * Scale};
+  }
+
+  Rectangle swordSource{0.f, 0.f, static_cast<float>(Weapon.width) * RightLeft,
+                        static_cast<float>(Weapon.height)};
+  Rectangle swordDest{GetScreenPos().x + swordOffset.x,
+                      GetScreenPos().y + swordOffset.y, Weapon.width * Scale,
+                      Weapon.height * Scale};
+  DrawTexturePro(Weapon, swordSource, swordDest, swordOrigin, 0.f, WHITE);
+
+  DrawRectangleLines(weaponCollision.x, weaponCollision.y,
+                     weaponCollision.width, weaponCollision.height, RED);
 }
