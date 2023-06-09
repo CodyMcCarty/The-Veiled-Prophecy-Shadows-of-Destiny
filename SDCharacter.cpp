@@ -43,6 +43,7 @@ void SDCharacter::Tick(float deltaTime)
   // draw sword
   Vector2 swordOrigin{};
   Vector2 swordOffset{};
+  float swordRotation{};
   if (RightLeft > 0.f)
   {
     swordOrigin = {0.f, Weapon.height * Scale};
@@ -50,6 +51,7 @@ void SDCharacter::Tick(float deltaTime)
     weaponCollision = {GetScreenPos().x + swordOffset.x,
                        GetScreenPos().y + swordOffset.y - Weapon.height * Scale,
                        Weapon.width * Scale, Weapon.height * Scale};
+    swordRotation = 35.f;
   }
   else
   {
@@ -58,6 +60,7 @@ void SDCharacter::Tick(float deltaTime)
     weaponCollision = {GetScreenPos().x + swordOffset.x - Weapon.width * Scale,
                        GetScreenPos().y + swordOffset.y - Weapon.height * Scale,
                        Weapon.width * Scale, Weapon.height * Scale};
+    swordRotation = -35.f;
   }
 
   Rectangle swordSource{0.f, 0.f, static_cast<float>(Weapon.width) * RightLeft,
@@ -65,7 +68,8 @@ void SDCharacter::Tick(float deltaTime)
   Rectangle swordDest{GetScreenPos().x + swordOffset.x,
                       GetScreenPos().y + swordOffset.y, Weapon.width * Scale,
                       Weapon.height * Scale};
-  DrawTexturePro(Weapon, swordSource, swordDest, swordOrigin, 0.f, WHITE);
+  DrawTexturePro(Weapon, swordSource, swordDest, swordOrigin, swordRotation,
+                 WHITE);
 
   DrawRectangleLines(weaponCollision.x, weaponCollision.y,
                      weaponCollision.width, weaponCollision.height, RED);
