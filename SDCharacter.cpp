@@ -28,6 +28,15 @@ Vector2 SDCharacter::GetLocation()
   return Vector2Add(pos, GetScreenPos());
 }
 
+void SDCharacter::TakeDamage(float damage)
+{
+  Health -= damage;
+  if (Health <= 0.f)
+  {
+    SetAlive(false);
+  }
+}
+
 void SDCharacter::Tick(float deltaTime)
 {
   if (!GetAlive()) return;

@@ -28,4 +28,9 @@ void SDEnemy::Tick(float deltaTime)
 
   Velocity = Vector2Subtract(Target->GetScreenPos(), GetScreenPos());
   SDBaseCharacter::Tick(deltaTime);
+
+  if (CheckCollisionRecs(GetCollision(), Target->GetCollision()))
+  {
+    Target->TakeDamage(DPS * deltaTime);
+  }
 }

@@ -14,4 +14,5 @@ class SDEnemy : public SDBaseCharacter
 
  private:
   SDCharacter* Target;
+  float DPS{10.f};
 };
